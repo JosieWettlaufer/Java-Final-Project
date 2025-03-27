@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>My Files</title>
+</head>
+<body>
+<h1>My Files</h1>
+
+<div th:if="${message}" th:text="${message}" style="color: green;"></div>
+
+<table>
+  <thead>
+  <tr>
+    <th>Filename</th>
+    <th>Content Type</th>
+    <th>Size</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="file : ${files}">
+    <td th:text="${file.filename}"></td>
+    <td th:text="${file.metadata.get('_contentType')}"></td>
+    <td th:text="${file.length}"></td>
+    <td>
+      <a th:href="@{/media/download/{id}(id=${file.objectId.toString()})}">Download</a>
+    </td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(files)}">
+    <td colspan="4">No files found</td>
+  </tr>
+  </tbody>
+</table>
+
+<div>
+  <a th:href="@{/media/uploadform}">Upload New File</a>
+</div>
+<div>
+  <a th:href="@{/home}">Back to Home</a>
+</div>
+</body>
+</html>

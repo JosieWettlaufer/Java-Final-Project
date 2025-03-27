@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>My Time Capsules</title>
+</head>
+<body>
+<h1>My Time Capsules</h1>
+
+<div th:if="${message}" th:text="${message}" style="color: green;"></div>
+
+<div>
+  <a th:href="@{/capsules/create}">Create New Time Capsule</a>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Created Date</th>
+    <th>Lock Date</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="capsule : ${capsules}">
+    <td th:text="${capsule.title}"></td>
+    <td th:text="${capsule.createdAt}"></td>
+    <td th:text="${capsule.lockDate}"></td>
+    <td th:text="${capsule.unlocked ? 'Unlocked' : 'Locked'}"></td>
+    <td>
+      <a th:href="@{/capsules/{id}(id=${capsule.id})}">View</a>
+      <a th:href="@{/capsules/{id}/delete(id=${capsule.id})}">Delete</a>
+    </td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(capsules)}">
+    <td colspan="5">No time capsules found</td>
+  </tr>
+  </tbody>
+</table>
+
+<div>
+  <a th:href="@{/home}">Back to Home</a>
+</div>
+</body>
+</html>

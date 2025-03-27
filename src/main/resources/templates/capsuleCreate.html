@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Create Time Capsule</title>
+</head>
+<body>
+<h1>Create a New Time Capsule</h1>
+
+<form th:action="@{/capsules/create}" th:object="${capsule}" method="post">
+  <div>
+    <label>Title:
+      <input type="text" th:field="*{title}" required />
+    </label>
+  </div>
+  <div>
+    <label>Description:
+      <textarea th:field="*{description}" rows="4" cols="50"></textarea>
+    </label>
+  </div>
+  <div>
+    <label>Lock Until Date:
+      <input type="date" th:field="*{lockDate}" required />
+    </label>
+  </div>
+  <div>
+    <label>Message:
+      <textarea th:field="*{message}" rows="6" cols="50" required></textarea>
+    </label>
+  </div>
+  <div>
+    <button type="submit">Create Time Capsule</button>
+  </div>
+</form>
+
+<div>
+  <a th:href="@{/capsules/myCapsules}">Back to My Capsules</a>
+</div>
+</body>
+</html>

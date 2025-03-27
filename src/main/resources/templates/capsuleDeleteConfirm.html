@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Delete Confirmation</title>
+</head>
+<body>
+<h1>Delete Time Capsule</h1>
+
+<div>
+  <p>Are you sure you want to delete this time capsule?</p>
+  <p><strong>Title:</strong> <span th:text="${capsule.title}"></span></p>
+  <p><strong>Created:</strong> <span th:text="${capsule.createdAt}"></span></p>
+
+  <form th:action="@{/capsules/{id}/delete(id=${capsule.id})}" method="post">
+    <button type="submit">Yes, Delete</button>
+  </form>
+
+  <a th:href="@{/capsules/{id}(id=${capsule.id})}">No, Go Back</a>
+</div>
+</body>
+</html>

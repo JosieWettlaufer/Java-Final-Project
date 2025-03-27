@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Time Capsule Details</title>
+</head>
+<body>
+<h1>Time Capsule Details</h1>
+
+<div>
+  <h2 th:text="${capsule.title}"></h2>
+  <p><strong>Created:</strong> <span th:text="${capsule.createdAt}"></span></p>
+  <p><strong>Locked Until:</strong> <span th:text="${capsule.lockDate}"></span></p>
+  <p><strong>Status:</strong> <span th:text="${capsule.unlocked ? 'Unlocked' : 'Locked'}"></span></p>
+
+  <div th:if="${capsule.description}">
+    <h3>Description</h3>
+    <p th:text="${capsule.description}"></p>
+  </div>
+
+  <div th:if="${capsule.unlocked}">
+    <h3>Message</h3>
+    <div th:text="${capsule.message}"></div>
+  </div>
+
+  <div th:unless="${capsule.unlocked}">
+    <p>This time capsule is still locked. The message will be available after <span th:text="${capsule.lockDate}"></span>.</p>
+  </div>
+</div>
+
+<div>
+  <a th:href="@{/capsules/{id}/delete(id=${capsule.id})}">Delete this Capsule</a>
+</div>
+
+<div>
+  <a th:href="@{/capsules/myCapsules}">Back to My Capsules</a>
+</div>
+</body>
+</html>

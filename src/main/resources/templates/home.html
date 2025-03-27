@@ -7,12 +7,27 @@
 <body>
 <h1>Welcome home</h1>
 
-<div>
-  <p>Upload a Photo <a th:href="@{/photos}">Here</a></p>
+<!-- In your home.html template -->
+<div th:if="${username}">
+  <p>Hello, <span th:text="${username}">User</span>!</p>
+  <p>You are successfully logged in.</p>
+
+  <!-- Add these links -->
+  <div>
+    <a th:href="@{/media/uploadform}">Upload Files</a>
+  </div>
+  <div>
+    <a th:href="@{/media/list}">View My Files</a>
+  </div>
+
+  <div>
+    <a th:href="@{/capsules/myCapsules}">View My Capsules</a>
+  </div>
+
+  <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+  </form>
 </div>
 
-<div>
-  <p>Upload a Video <a th:href="@{/videos}">Here</a></p>
-</div>
 </body>
 </html>
