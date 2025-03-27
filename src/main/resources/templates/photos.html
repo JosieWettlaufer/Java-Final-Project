@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>View Photo</h1>
+    <h2 th:if="${title}" th:text="${title}"></h2>
+
+    <!-- Display the image -->
+    <img alt="sample" th:if="${image}" th:src="'data:image/png;base64,' + ${image}" />
+</body>
+</html>

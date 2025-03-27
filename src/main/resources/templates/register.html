@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+</head>
+<body>
+<h1>Registration</h1>
+<div th:if="${param.error}">
+    Username already exists. Please choose another one.
+</div>
+<form th:action="@{/register}" th:object="${user}" method="post">
+    <div>
+        <label>Username: <input type="text" th:field="*{username}" required/></label>
+    </div>
+    <div>
+        <label>Password: <input type="password" th:field="*{password}" required/></label>
+    </div>
+    <div>
+        <input type="submit" value="Register"/>
+    </div>
+</form>
+<div>
+    <a th:href="@{/login}">Back to login</a>
+</div>
+</body>
+</html>
